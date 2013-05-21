@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Natural Language Form</title>
+		<meta name="description" content="Natural Language Form with custom text input and drop-down lists" />
+		<meta name="keywords" content="Natural Language UI, sentence form, text input, contenteditable, html5, css3, jquery" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico"> 
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<body class="nl-blurred">
+		<div class="container demo-1">
+			<!-- Top Navigation -->
+			<div class="codrops-top clearfix">
+				<a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/MorphingDevices/"><span>Previous Demo</span></a>
+				<span class="right"><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=15139"><span>Back to the Codrops Article</span></a></span>
+			</div>
+			<header>
+				<h1>Natural Language Form <span>with custom input elements</span></h1>	
+			</header>
+			<div class="main clearfix">
+				<form id="nl-form" class="nl-form">
+					I feel to eat 
+					<select>
+						<option value="1" selected>any food</option>
+						<option value="2">Indian</option>
+						<option value="3">French</option>
+						<option value="4">Japanese</option>
+						<option value="2">Italian</option>
+					</select>
+					<br />in a
+					<select>
+						<option value="1" selected>standard</option>
+						<option value="2">fancy</option>
+						<option value="3">hip</option>
+						<option value="4">traditional</option>
+						<option value="2">romantic</option>
+					</select>
+					restaurant
+					<br />at 
+					<select>
+						<option value="1" selected>anytime</option>
+					 	<option value="1">7 p.m.</option>
+					 	<option value="2">8 p.m.</option>
+					 	<option value="3">9 p.m.</option>
+					</select>
+					in <input type="text" value="" placeholder="any city" data-subline="For example: <em>Los Angeles</em> or <em>New York</em>"/>
+					<div class="nl-submit-wrap">
+						<button class="nl-submit" type="submit">Find a restaurant</button>
+					</div>
+					<div class="nl-overlay"></div>
+				</form>
+			</div>
+		</div><!-- /container -->
+		<script src="js/nlform.js"></script>
+		<script>
+			var nlform = new NLForm( document.getElementById( 'nl-form' ) );
+		</script>
+	</body>
+</html>
