@@ -167,6 +167,13 @@
 					this.selectedIdx = idx;
 					// update original select element´s value
 					this.elOriginal.value = this.elOriginal.children[ this.selectedIdx ].value;
+					if ("createEvent" in document) {
+					    var evt = document.createEvent("HTMLEvents");
+					    evt.initEvent("change", false, true);
+					    this.elOriginal.dispatchEvent(evt);
+					}
+					else
+					    this.elOriginal.fireEvent("change");
 				}
 			}
 			else if( this.type === 'input' ) {
@@ -179,5 +186,4 @@
 
 	// add to global namespace
 	window.NLForm = NLForm;
-
 } )( window );
