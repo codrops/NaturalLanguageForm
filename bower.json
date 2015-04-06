@@ -1,0 +1,9 @@
+{
+  "name": "NaturalLanguageForm",
+  "homepage": "https://github.com/codrops/NaturalLanguageForm",
+  "main": [
+    "css/component.css",
+    "js/nlform.js",
+    "js/modernizr.custom.js"
+  ]
+}
