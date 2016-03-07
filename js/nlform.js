@@ -33,7 +33,7 @@
 				self.fldOpen++;
 				self.fields.push( new NLField( self, el, 'dropdown', self.fldOpen ) );
 			} );
-			Array.prototype.slice.call( this.el.querySelectorAll( 'input:not([type="hidden"])' ) ).forEach( function( el, i ) {
+			Array.prototype.slice.call( this.el.querySelectorAll( 'input:not([type="hidden"]):not([type="submit"])' ) ).forEach( function( el, i ) {
 				self.fldOpen++;
 				self.fields.push( new NLField( self, el, 'input', self.fldOpen ) );
 			} );
