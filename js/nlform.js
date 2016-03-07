@@ -148,6 +148,29 @@
 			this.form.fldOpen = this.pos;
 			var self = this;
 			this.fld.className += ' nl-field-open';
+			this._checkPosition()
+		},		
+		_checkPosition: function() {
+			var ul = this.fld.querySelector('ul');
+			var left = this._getOffset(ul).left;
+
+			var windowWidth = document.documentElement.clientWidth
+				|| document.body.clientWidth;
+
+			if (windowWidth < left + ul.scrollWidth) {
+				var diff = windowWidth - (left + ul.scrollWidth);
+				ul.style.left = diff+'px';
+			}
+		},
+		_getOffset: function(el) {
+			var _x = 0;
+			var _y = 0;
+			while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+				_x += el.offsetLeft - el.scrollLeft;
+				_y += el.offsetTop - el.scrollTop;
+				el = el.offsetParent;
+			}
+			return { top: _y, left: _x };
 		},
 		close : function( opt, idx, flag ) {
 			if( !this.open ) {
