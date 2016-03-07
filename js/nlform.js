@@ -125,6 +125,7 @@
 				var opts = Array.prototype.slice.call( this.optionsList.querySelectorAll( 'li' ) );
 				opts.forEach( function( el, i ) {
 					el.addEventListener( 'click', function( ev ) { ev.preventDefault(); self.close( el, opts.indexOf( el ) ); } );
+					el.addEventListener( 'hover', function( ev ) { ev.preventDefault(); self.close( el, opts.indexOf( el ), true ); } );
 					el.addEventListener( 'touchstart', function( ev ) { ev.preventDefault(); self.close( el, opts.indexOf( el ) ); } );
 				} );
 			}
@@ -148,13 +149,15 @@
 			var self = this;
 			this.fld.className += ' nl-field-open';
 		},
-		close : function( opt, idx ) {
+		close : function( opt, idx, flag ) {
 			if( !this.open ) {
 				return false;
 			}
-			this.open = false;
-			this.form.fldOpen = -1;
-			this.fld.className = this.fld.className.replace(/\b nl-field-open\b/,'');
+			if (!flag) {
+				this.open = false;
+				this.form.fldOpen = -1;
+				this.fld.className = this.fld.className.replace(/\b nl-field-open\b/,'');
+			}
 
 			if( this.type === 'dropdown' ) {
 				if( opt ) {
@@ -167,6 +170,13 @@
 					this.selectedIdx = idx;
 					// update original select element´s value
 					this.elOriginal.value = this.elOriginal.children[ this.selectedIdx ].value;
+					if ("createEvent" in document) {
+					    var evt = document.createEvent("HTMLEvents");
+					    evt.initEvent("change", false, true);
+					    this.elOriginal.dispatchEvent(evt);
+					}
+					else
+					    this.elOriginal.fireEvent("change");
 				}
 			}
 			else if( this.type === 'input' ) {
@@ -179,5 +189,4 @@
 
 	// add to global namespace
 	window.NLForm = NLForm;
-
 } )( window );
