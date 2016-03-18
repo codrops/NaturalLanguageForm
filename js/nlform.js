@@ -4,12 +4,12 @@
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2013, Codrops
  * http://www.codrops.com
  */
 ;( function( window ) {
-	
+
 	'use strict';
 
 	var document = window.document;
@@ -18,9 +18,10 @@
 		String.prototype.trim=function(){return this.replace(/^\s+|\s+$/g, '');};
 	}
 
-	function NLForm( el ) {	
+	function NLForm( el, elClass ) {
 		this.el = el;
 		this.overlay = this.el.querySelector( '.nl-overlay' );
+		this.elClass = (elClass !== undefined) ? '.' + elClass : '';
 		this.fields = [];
 		this.fldOpen = -1;
 		this._init();
@@ -29,11 +30,11 @@
 	NLForm.prototype = {
 		_init : function() {
 			var self = this;
-			Array.prototype.slice.call( this.el.querySelectorAll( 'select' ) ).forEach( function( el, i ) {
+			Array.prototype.slice.call( this.el.querySelectorAll( 'select' + self.elClass ) ).forEach( function( el, i ) {
 				self.fldOpen++;
 				self.fields.push( new NLField( self, el, 'dropdown', self.fldOpen ) );
 			} );
-			Array.prototype.slice.call( this.el.querySelectorAll( 'input:not([type="hidden"]):not([type="submit"])' ) ).forEach( function( el, i ) {
+			Array.prototype.slice.call( this.el.querySelectorAll( 'input' + self.elClass + ':not([type="hidden"]):not([type="submit"])' ) ).forEach( function( el, i ) {
 				self.fldOpen++;
 				self.fields.push( new NLField( self, el, 'input', self.fldOpen ) );
 			} );
@@ -59,10 +60,10 @@
 	NLField.prototype = {
 		_create : function() {
 			if( this.type === 'dropdown' ) {
-				this._createDropDown();	
+				this._createDropDown();
 			}
 			else if( this.type === 'input' ) {
-				this._createInput();	
+				this._createInput();
 			}
 		},
 		_createDropDown : function() {
@@ -149,7 +150,7 @@
 			var self = this;
 			this.fld.className += ' nl-field-open';
 			this._checkPosition()
-		},		
+		},
 		_checkPosition: function() {
 			var ul = this.fld.querySelector('ul');
 			var left = this._getOffset(ul).left;
