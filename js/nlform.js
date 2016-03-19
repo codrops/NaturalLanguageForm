@@ -49,12 +49,16 @@
 	};
 
 	function NLField( form, el, type, idx ) {
-		this.form = form;
-		this.elOriginal = el;
-		this.pos = idx;
-		this.type = type;
-		this._create();
-		this._initEvents();
+		var parsed = el.getAttribute('data-parsed');
+		if (parsed != 1) {
+			el.setAttribute('data-parsed', 1);
+			this.form = form;
+			this.elOriginal = el;
+			this.pos = idx;
+			this.type = type;
+			this._create();
+			this._initEvents();
+		}
 	}
 
 	NLField.prototype = {
